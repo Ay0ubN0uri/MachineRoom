@@ -30,10 +30,4 @@ This is a web-based admin panel developed using Laravel framework for managing m
 8.  Start the development server by running `php artisan serve`
 9. happy managing ;)
 
----
 
-## Contact
-
-- LinkedIn: [ayoub nouri](https://www.linkedin.com/in/ayoub-nouri-73532a244/)
-
-- Email: ayoub.nouri105@gmail.com
