@@ -21,6 +21,13 @@
 @section('auth_header', __('adminlte::adminlte.login_message'))
 
 @section('auth_body')
+
+    @if(session('disabledAccountMessage'))
+        <div class="alert alert-danger" role="alert">
+            <strong>{{ session('disabledAccountMessage') }}</strong>
+        </div>
+    @endif
+
     <form action="{{ $login_url }}" method="post">
         @csrf
 
