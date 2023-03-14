@@ -78,8 +78,13 @@ class UserController extends Controller
             'password' => 'required'
         ]);
 
+        $user = User::where('email', $formFields['email'])->first();
+        
+        if($user->status == 'disabled'){
+            return back()->with('disabledAccountMessage','Sorry! Your account is disabled!');
+        }
+
         if(auth()->attempt($formFields)) {
-            $user = User::where('email', $formFields['email'])->first();
             $request->session()->regenerate();
             
             if($user->role == 'super_admin')
