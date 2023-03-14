@@ -358,7 +358,7 @@ return [
                 [
                     'text' => 'active/deactiver',
                     'icon'    => 'fa fa-fw fa-toggle-on',
-                    'url'  => '#',
+                    'url'  => 'utilisateur',
                 ],
             ],
         ],
@@ -464,17 +464,17 @@ return [
             'files' => [
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.13.4/js/dataTables.bootstrap5.min.js',
                 ],
                 [
                     'type' => 'css',
-                    'asset' => false,
+                    'asset' => true,
                     'location' => '//cdn.datatables.net/1.13.4/css/dataTables.bootstrap5.min.css',
                 ],
             ],

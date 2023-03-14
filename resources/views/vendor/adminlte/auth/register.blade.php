@@ -95,14 +95,17 @@
             <span class="fas fa-user-plus"></span>
             {{ __('adminlte::adminlte.register') }}
         </button>
-
+        <a type="button" href="/dashboard" class="btn btn-block btn-flat btn-secondary">
+            <span class="fa fa-arrow-left"></span>
+            Go Back
+        </a>
     </form>
 @stop
 
 @section('auth_footer')
-    <p class="my-0">
+    {{-- <p class="my-0">
         <a href="{{ $login_url }}">
             {{ __('adminlte::adminlte.i_already_have_a_membership') }}
         </a>
-    </p>
+    </p> --}}
 @stop

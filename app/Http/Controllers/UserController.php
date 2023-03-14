@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\DB;
 
 
 class UserController extends Controller
@@ -14,6 +15,25 @@ class UserController extends Controller
         return view('auth.register');
     }
     
+    // This will return users to populate dataTable(super_admin)
+    public function getData()
+    {
+        $data = DB::table('users')
+        ->select('id', 'name', 'email', 'created_at', 'updated_at', 'status')
+        ->where('role', '=', 'admin')
+        ->get();
+
+        return response()->json(['data' => $data]);
+    }
+
+    public function activateAdmin(Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $user->status = $request->input('status');
+        $user->save();
+    
+        return response()->json(['success' => true]);
+    }
 
     // Create New User
     public function store(Request $request) {

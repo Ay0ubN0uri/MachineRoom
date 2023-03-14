@@ -45,6 +45,13 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
         return redirect('/dashboard');    
     });
     
+    Route::get('/utilisateur', function(){
+        return view('super_admin.utilisateur');
+    });
+
+    Route::get('/userData', [UserController::class, 'getData'])->name('user_data');
+    Route::put('/activate/{id}', [UserController::class, 'activateAdmin'])->name('activate');
+
     // Show Register/Create Form
     Route::get('register', [UserController::class, 'create']);
     
