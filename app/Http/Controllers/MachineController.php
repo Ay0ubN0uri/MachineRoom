@@ -17,4 +17,34 @@ class MachineController extends Controller
         $data = Machine::all();
         return response()->json(['data' => $data]);
     }
+
+    public function store(Request $request)
+    {
+        $machine = new Machine();
+        $machine->reference = $request->reference;
+        $machine->brand = $request->brand;
+        $machine->price = $request->price;
+        $machine->purchaseDate = $request->purchaseDate;
+        $machine->room_id = $request->room_id;
+        $machine->save();
+        return response()->json(['status'=>true]);
+    }
+
+    public function update(Request $request, Machine $machine )
+    {
+        $machine->fill([
+            'reference' =>$request->reference,
+            'brand' =>$request->brand,
+            'price' =>$request->price,
+            'purchaseDate' =>$request->purchaseDate,
+            'room_id' =>$request->room_id,
+        ]);
+        $machine->save();
+        return response()->json(['status'=>true]);
+    }
+
+    public function destroy(Machine $machine)
+    {
+        return response()->json(['status'=>$machine->delete()]);
+    }
 }

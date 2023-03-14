@@ -46,6 +46,8 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/machines',[MachineController::class,'index'])->name('admin.machines');
         Route::get('/admin/fetchMachines',[MachineController::class,'fetchMachines'])->name('admin.fetchMachines');
         Route::post('/admin/machines',[MachineController::class,'store'])->name('admin.machines.store');
+        Route::delete('/admin/machines/{machine}',[MachineController::class,'destroy'])->name('admin.machines.destroy');
+        Route::put('/admin/machines/{machine}',[MachineController::class,'update'])->name('admin.machines.update');
 
     });
 });

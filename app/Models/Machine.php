@@ -8,4 +8,11 @@ use Illuminate\Database\Eloquent\Model;
 class Machine extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'reference',
+        'brand',
+        'purchaseDate',
+        'price',
+        'room_id'
+    ];
 }
