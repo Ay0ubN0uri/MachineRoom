@@ -37,7 +37,9 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // Route::resource('rooms', RoomController::class);
         Route::get('/admin/rooms',[RoomController::class,'index'])->name('admin.rooms');
         Route::get('/admin/fetchRooms',[RoomController::class,'fetchRooms'])->name('admin.fetchRooms');
+        Route::post('/admin/rooms',[RoomController::class,'store'])->name('admin.rooms.store');
         Route::delete('/admin/rooms/{room}',[RoomController::class,'destroy'])->name('admin.rooms.destroy');
+        Route::put('/admin/rooms/{room}',[RoomController::class,'update'])->name('admin.rooms.update');
     });
 });
 

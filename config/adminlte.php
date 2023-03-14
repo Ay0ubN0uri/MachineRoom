@@ -346,33 +346,20 @@ return [
             'can' => 'Admin',
         ],
         [
-            'text' => 'rooms',
+            'text' => 'Rooms',
             'url'  => 'admin/rooms',
-            'icon' => 'fas fa-fw fa-user',
-            'can' => 'Admin',
+            'icon' => 'fas fa-fw fa-table',
+        ],
+        [
+            'text' => 'Machines',
+            'url'  => 'admin/machines',
+            'icon' => 'fas fa-fw fa-table',
         ],
 
         [
             'text'    => 'Gestion de utilisateurs',
             'icon'    => 'fa fa-fw fa-cog',
             'can'     => 'SuperAdmin',
-            'submenu' => [
-                [
-                    'text' => 'Cree des comptes',
-                    'icon'    => 'fa fa-fw fa-plus',
-                    'url'  => 'register',
-                ],
-                [
-                    'text' => 'active/deactiver',
-                    'icon'    => 'fa fa-fw fa-toggle-on',
-                    'url'  => 'utilisateur',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'Gestion des Salles',
-            'icon'    => 'fa fa-fw fa-cog',
-            'can'     => 'Admin',
             'submenu' => [
                 [
                     'text' => 'Cree des comptes',

@@ -26,44 +26,31 @@ class RoomController extends Controller
         return response()->json(['data' => $data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
     {
-        //
+        $room = new Room();
+        $room->code = $request->code;
+        $room->label = $request->label;
+        $room->save();
+        return response()->json(['status'=>true]);
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Room $room )
     {
-        //
+        $room->fill([
+            'code'=>$request->code,
+            'label'=>$request->label
+        ]);
+        $room->save();
+        return response()->json(['status'=>true]);
     }
 
     /**
@@ -71,12 +58,6 @@ class RoomController extends Controller
      */
     public function destroy(Room $room)
     {
-        if($room->delete()){
-            
-        }
-        else{
-
-        }
-        // dd(Room::find($id));
+        return response()->json(['status'=>$room->delete()]);
     }
 }
