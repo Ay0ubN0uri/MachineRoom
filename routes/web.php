@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -33,6 +34,10 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/home', function () {
             return view('admin.dashboard');
         });
+        // Route::resource('rooms', RoomController::class);
+        Route::get('/admin/rooms',[RoomController::class,'index'])->name('admin.rooms');
+        Route::get('/admin/fetchRooms',[RoomController::class,'fetchRooms'])->name('admin.fetchRooms');
+        Route::delete('/admin/rooms/{room}',[RoomController::class,'destroy'])->name('admin.rooms.destroy');
     });
 });
 

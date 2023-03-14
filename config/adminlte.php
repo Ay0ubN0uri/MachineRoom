@@ -345,6 +345,12 @@ return [
             'icon' => 'fas fa-fw fa-user',
             'can' => 'Admin',
         ],
+        [
+            'text' => 'rooms',
+            'url'  => 'admin/rooms',
+            'icon' => 'fas fa-fw fa-user',
+            'can' => 'Admin',
+        ],
 
         [
             'text'    => 'Gestion de utilisateurs',
@@ -361,6 +367,7 @@ return [
                     'url'  => 'utilisateur',
                 ],
             ],
+            'can'=>'SuperAdmin'
         ],
         // [
         //     'text' => 'change_password',
