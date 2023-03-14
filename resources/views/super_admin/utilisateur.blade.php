@@ -38,7 +38,7 @@
         $(document).ready(function() {
             $('#users').DataTable({
                 processing: true,
-                ajax: '{{ route('user_data') }}',
+                ajax: '{{ route("user_data") }}',
                 columns: [
                     {data: 'id'},
                     {data: 'name'},
