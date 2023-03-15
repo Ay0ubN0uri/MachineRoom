@@ -29,6 +29,31 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
+Route::middleware(['auth', 'role:super_admin'])->group(function () {
+
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
+
+    Route::get('/utilisateur', function(){
+        return view('super_admin.utilisateur');
+    });
+
+    Route::get('/userData', [UserController::class, 'getData'])->name('user_data');
+    Route::put('/activate/{id}', [UserController::class, 'activateAdmin'])->name('activate');
+
+    // Show Register/Create Form
+    Route::get('register', [UserController::class, 'create']);
+    
+    // Create New User
+    Route::post('users', [UserController::class, 'store']);
+
+    // Delete User
+    Route::delete('/deleteuser/{id}', [UserController::class, 'deleteUser']);
+
+    Route::get('/', function () {
+        return redirect('/dashboard');    
+    });
+
+});
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::group(['role' => 'admin'], function () {
@@ -56,31 +81,11 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
             return redirect('/admin/home');    
         });
 
+        Route::get('/', function () {
+            return redirect('/admin/home');    
+        });
+
     });
 });
 
-Route::middleware(['auth', 'role:super_admin'])->group(function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
-
-    Route::get('/utilisateur', function(){
-        return view('super_admin.utilisateur');
-    });
-
-    Route::get('/userData', [UserController::class, 'getData'])->name('user_data');
-    Route::put('/activate/{id}', [UserController::class, 'activateAdmin'])->name('activate');
-
-    // Show Register/Create Form
-    Route::get('register', [UserController::class, 'create']);
-    
-    // Create New User
-    Route::post('users', [UserController::class, 'store']);
-
-    // Delete User
-    Route::delete('/deleteuser/{id}', [UserController::class, 'deleteUser']);
-
-    Route::get('/', function () {
-        return redirect('/dashboard');    
-    });
-
-});
