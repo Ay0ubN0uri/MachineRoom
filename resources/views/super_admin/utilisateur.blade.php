@@ -59,11 +59,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
     <script>
-        toastr.options = {
-            "positionClass": "toast-top-center", 
-        }
-
+        
         $(document).ready(function() {
+            toastr.options = {
+                "positionClass": "toast-top-center", 
+            }
+
             $('#users').DataTable({
                 processing: true,
                 ajax: '{{ route("user_data") }}',

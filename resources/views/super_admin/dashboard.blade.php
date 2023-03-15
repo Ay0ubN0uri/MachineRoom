@@ -16,10 +16,13 @@
             </x-adminlte-profile-widget>
         </div>
     </div>
-    
-    <x-adminlte-card title="" theme="info"  collapsible removable maximizable>
-        <canvas id="myChart"></canvas>
-    </x-adminlte-card>
+    <div class="d-flex justify-content-center">
+        <div class="col-8">
+            <x-adminlte-card title="" theme="info"  collapsible removable maximizable>
+                <canvas id="myChart"></canvas>
+            </x-adminlte-card>
+        </div>
+    </div>
 @stop
 
 

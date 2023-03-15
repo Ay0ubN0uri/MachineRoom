@@ -1,10 +1,11 @@
 <?php
 
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\MachineController;
-use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RoomController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\MachineController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,6 +19,8 @@ use App\Http\Controllers\UserController;
 */
 
 // Show Login Form
+
+
 Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 // Log User Out
@@ -26,18 +29,12 @@ Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 // Log In User
 Route::post('/users/authenticate', [UserController::class, 'authenticate']);
 
-// reset password
-Route::post('/password/reset', [UserController::class, 'resetPassword']);
 
 Route::middleware(['auth', 'role:admin'])->group(function () {
     Route::group(['role' => 'admin'], function () {
-        Route::get('/', function () {
-            return redirect('/admin/home');    
-        });
 
-        Route::get('/admin/home', function () {
-            return view('admin.dashboard');
-        });
+        Route::get('/admin/home',[AdminController::class,'adminHome'])->name('admin_home');
+
         // rooms
         Route::get('/admin/rooms',[RoomController::class,'index'])->name('admin.rooms');
         Route::get('/admin/fetchRooms',[RoomController::class,'fetchRooms'])->name('admin.fetchRooms');
@@ -48,28 +45,27 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         // machines
         Route::get('/admin/machines',[MachineController::class,'index'])->name('admin.machines');
         Route::get('/admin/fetchMachines',[MachineController::class,'fetchMachines'])->name('admin.fetchMachines');
+        Route::get('/admin/fetchMachinesPerRooms/{room_id}',[MachineController::class,'fetchMachinesPerRooms'])->name('admin.fetchMachinesPerRooms');
         Route::post('/admin/machines',[MachineController::class,'store'])->name('admin.machines.store');
         Route::delete('/admin/machines/{machine}',[MachineController::class,'destroy'])->name('admin.machines.destroy');
         Route::put('/admin/machines/{machine}',[MachineController::class,'update'])->name('admin.machines.update');
+        Route::get('/admin/statistiques',[AdminController::class,'getStatistics'])->name('admin.statistiques');
+        Route::get('/admin/machinesPerRooms',[MachineController::class,'listMachinesPerRooms'])->name('admin.machinesPerRooms');
+
+        Route::get('/admin', function () {
+            return redirect('/admin/home');    
+        });
 
     });
 });
 
 Route::middleware(['auth', 'role:super_admin'])->group(function () {
-    // Route::get('/dashboard', function () {
-    //     return view('super_admin.dashboard');
-    // });
 
     Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
-    Route::get('/', function () {
-        return redirect('/dashboard');    
-    });
-    
     Route::get('/utilisateur', function(){
         return view('super_admin.utilisateur');
     });
-
 
     Route::get('/userData', [UserController::class, 'getData'])->name('user_data');
     Route::put('/activate/{id}', [UserController::class, 'activateAdmin'])->name('activate');
@@ -82,5 +78,9 @@ Route::middleware(['auth', 'role:super_admin'])->group(function () {
 
     // Delete User
     Route::delete('/deleteuser/{id}', [UserController::class, 'deleteUser']);
+
+    Route::get('/', function () {
+        return redirect('/dashboard');    
+    });
 
 });

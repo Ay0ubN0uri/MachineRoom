@@ -11,9 +11,11 @@
     <div class="card">
         <div class="card-body">
             <div class="mx-2 mb-3">
-                <button type="button" class="btn btn-primary " id ="create-machine-btn" data-toggle="modal" data-target="#create-machine">
-                    <i class="fa fa-plus"></i><span class="mx-2">Create Machine</span>
-                  </button>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary " id ="create-machine-btn" data-toggle="modal" data-target="#create-machine">
+                        <i class="fa fa-plus"></i><span class="mx-2">Create Machine</span>
+                    </button>
+                </div>
             </div>
               
               <!-- Create Modal -->

@@ -11,9 +11,11 @@
     <div class="card">
         <div class="card-body">
             <div class="m-2">
-                <button type="button" class="btn btn-primary create-room" data-toggle="modal" data-target="#create-room">
-                    <i class="fa fa-plus"></i><span class="mx-2">Create Room</span>
-                  </button>
+                <div class="d-flex justify-content-center">
+                    <button type="button" class="btn btn-primary create-room" data-toggle="modal" data-target="#create-room">
+                        <i class="fa fa-plus"></i><span class="mx-2">Create Room</span>
+                    </button>
+                </div>
             </div>
               
               <!-- Create Modal -->

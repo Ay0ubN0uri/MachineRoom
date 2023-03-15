@@ -199,7 +199,7 @@ return [
     'classes_content_wrapper' => '',
     'classes_content_header' => '',
     'classes_content' => '',
-    'classes_sidebar' => 'sidebar-dark-primary elevation-4',
+    'classes_sidebar' => 'sidebar-dark-primary elevation-4 position-fixed top-0 start-0 bottom-0 overflow',
     'classes_sidebar_nav' => '',
     'classes_topnav' => 'navbar-white navbar-light',
     'classes_topnav_nav' => 'navbar-expand',
@@ -317,11 +317,11 @@ return [
         //     'type' => 'sidebar-menu-search',
         //     'text' => 'search',
         // ],
-        [
-            'text' => 'blog',
-            'url'  => 'admin/blog',
-            'can'  => 'manage-blog',
-        ],
+        // [
+        //     'text' => 'blog',
+        //     'url'  => 'admin/blog',
+        //     'can'  => 'manage-blog',
+        // ],
         // [
         //     'text'        => 'pages',
         //     'url'         => 'admin/pages',
@@ -330,7 +330,7 @@ return [
         //     'label_color' => 'success',
         //     'role' => 'admin',
         // ],
-
+    
         [
             'text'        => 'Dashboard',
             'url'         => 'dashboard',
@@ -355,14 +355,20 @@ return [
         [
             'text' => 'Salles',
             'url'  => 'admin/rooms',
-            'icon' => 'fas fa-fw fa-table',
+            'icon' => 'fas fa-fw fa-hotel',
             'can' => 'Admin'
         ],
         [
             'text' => 'Machines',
             'url'  => 'admin/machines',
-            'icon' => 'fas fa-fw fa-table',
+            'icon' => 'fas fa-fw fa-industry',
             'can' => 'Admin'
+        ],
+        [
+            'text'        => 'List Machines par Salle',
+            'url'         => 'admin/machinesPerRooms',
+            'icon'        => 'fa fa-fw fa-list',
+            'can' => 'Admin',
         ],
 
         [

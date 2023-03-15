@@ -47,4 +47,13 @@ class MachineController extends Controller
     {
         return response()->json(['status'=>$machine->delete()]);
     }
+
+    public function listMachinesPerRooms(){
+        return view('admin.listMachinesPerRooms');
+    }
+
+    public function fetchMachinesPerRooms($room_id){
+        $data = Machine::where('room_id', $room_id)->get();
+        return response()->json(['data' => $data]);
+    }
 }
