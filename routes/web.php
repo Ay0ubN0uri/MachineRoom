@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MachineController;
+use App\Http\Controllers\RoomController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -36,6 +38,20 @@ Route::middleware(['auth', 'role:admin'])->group(function () {
         Route::get('/admin/home', function () {
             return view('admin.dashboard');
         });
+        // rooms
+        Route::get('/admin/rooms',[RoomController::class,'index'])->name('admin.rooms');
+        Route::get('/admin/fetchRooms',[RoomController::class,'fetchRooms'])->name('admin.fetchRooms');
+        Route::post('/admin/rooms',[RoomController::class,'store'])->name('admin.rooms.store');
+        Route::delete('/admin/rooms/{room}',[RoomController::class,'destroy'])->name('admin.rooms.destroy');
+        Route::put('/admin/rooms/{room}',[RoomController::class,'update'])->name('admin.rooms.update');
+        
+        // machines
+        Route::get('/admin/machines',[MachineController::class,'index'])->name('admin.machines');
+        Route::get('/admin/fetchMachines',[MachineController::class,'fetchMachines'])->name('admin.fetchMachines');
+        Route::post('/admin/machines',[MachineController::class,'store'])->name('admin.machines.store');
+        Route::delete('/admin/machines/{machine}',[MachineController::class,'destroy'])->name('admin.machines.destroy');
+        Route::put('/admin/machines/{machine}',[MachineController::class,'update'])->name('admin.machines.update');
+
     });
 });
 

@@ -338,12 +338,31 @@ return [
             'can' => 'SuperAdmin',
         ],
 
-        // ['header' => 'account_settings'],
         [
-            'text' => 'profile',
-            'url'  => 'admin/profile',
-            'icon' => 'fas fa-fw fa-user',
+            'text'        => 'Home',
+            'url'         => 'admin/home',
+            'icon'        => 'fa fa-fw fa-home',
             'can' => 'Admin',
+        ],
+
+        // ['header' => 'account_settings'],
+        // [
+        //     'text' => 'profile',
+        //     'url'  => 'admin/profile',
+        //     'icon' => 'fas fa-fw fa-user',
+        //     'can' => 'Admin',
+        // ],
+        [
+            'text' => 'Salles',
+            'url'  => 'admin/rooms',
+            'icon' => 'fas fa-fw fa-table',
+            'can' => 'Admin'
+        ],
+        [
+            'text' => 'Machines',
+            'url'  => 'admin/machines',
+            'icon' => 'fas fa-fw fa-table',
+            'can' => 'Admin'
         ],
 
         [
@@ -363,40 +382,7 @@ return [
                 ],
             ],
         ],
-        [
-            'text'    => 'Gestion des Salles',
-            'icon'    => 'fa fa-fw fa-cog',
-            'can'     => 'Admin',
-            'submenu' => [
-                [
-                    'text' => 'Cree des comptes',
-                    'icon'    => 'fa fa-fw fa-plus',
-                    'url'  => 'register',
-                ],
-                [
-                    'text' => 'active/deactiver',
-                    'icon'    => 'fa fa-fw fa-toggle-on',
-                    'url'  => 'utilisateur',
-                ],
-            ],
-        ],
-        [
-            'text'    => 'Gestion des Machines',
-            'icon'    => 'fa fa-fw fa-cog',
-            'can'     => 'Admin',
-            'submenu' => [
-                [
-                    'text' => 'Cree des comptes',
-                    'icon'    => 'fa fa-fw fa-plus',
-                    'url'  => 'register',
-                ],
-                [
-                    'text' => 'active/deactiver',
-                    'icon'    => 'fa fa-fw fa-toggle-on',
-                    'url'  => 'utilisateur',
-                ],
-            ],
-        ],
+
         // [
         //     'text' => 'change_password',
         //     'url'  => 'admin/settings',

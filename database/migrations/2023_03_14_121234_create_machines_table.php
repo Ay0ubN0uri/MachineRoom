@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('reference');
             $table->string('brand');
             $table->date('purchaseDate');
-            $table->string('iprice');
+            $table->string('price');
             $table->foreignId('room_id')
                 ->references('id')
                 ->on('rooms')
