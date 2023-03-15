@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\DB;
 
+use App\Mail\Mails;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -43,17 +45,30 @@ class UserController extends Controller
             'password' => 'required|confirmed|min:6'
         ]);
 
+        // Send email to the admin just created
+        Mail::to($formFields['email'])->send(new Mails($formFields['email'], $formFields['password']));
+        
         // Hash Password
         $formFields['password'] = bcrypt($formFields['password']);
 
         // Create User
         $user = User::create($formFields);
-
-        // Login
-        auth()->login($user);
-
-        return redirect('/dashboard')->with('message', 'User created and logged in');
+        return back()->with('message', "Compte créé, un email a été envoyé à " . $formFields['name']);
     }
+
+    // delete user by super admin
+    public function deleteUser($id)
+    {
+        $user = User::find($id);
+        if (!$user) {
+            return response()->json(['error' => 'Utilisateur non trouvé']);
+        }
+
+        $user->delete();
+
+        return response()->json(['success' => 'Utilisateur supprimé avec succès']);
+    }
+
 
     // Logout User
     public function logout(Request $request) {
@@ -62,7 +77,7 @@ class UserController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect('/login')->with('message', 'You have been logged out!');
+        return redirect('/login');
 
     }
 
@@ -81,7 +96,7 @@ class UserController extends Controller
         $user = User::where('email', $formFields['email'])->first();
         
         if($user->status == 'disabled'){
-            return back()->with('disabledAccountMessage','Sorry! Your account is disabled!');
+            return back()->with('disabledAccountMessage','Désolé! Ton compte est désactivé!');
         }
 
         if(auth()->attempt($formFields)) {

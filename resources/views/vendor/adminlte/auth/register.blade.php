@@ -97,7 +97,7 @@
         </button>
         <a type="button" href="/dashboard" class="btn btn-block btn-flat btn-secondary">
             <span class="fa fa-arrow-left"></span>
-            Go Back
+            Retourner
         </a>
     </form>
 @stop
